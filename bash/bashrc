@@ -2,6 +2,8 @@
 export EDITOR=nvim
 export VISUAL=nvim
 
+export DOTFILES=$HOME/.dotfiles
+
 # vi mode keybinds
 set -o vi
 
@@ -18,5 +20,3 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 for file in $(find "$DOTFILES" -name "aliases.bash"); do
     source "$file"
 done
-
-export DOTFILES=$HOME/.dotfiles

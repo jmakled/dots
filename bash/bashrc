@@ -1,0 +1,22 @@
+# GENERAL
+export EDITOR=nvim
+export VISUAL=nvim
+
+# vi mode keybinds
+set -o vi
+
+# MACOS
+## TODO: OS-specific crap oughta go somewhere else
+
+## add homebrew to $PATH
+export PATH=$PATH:/opt/homebrew/bin
+## fix for whiny macOS prompt when using Bash
+export BASH_SILENCE_DEPRECATION_WARNING=1
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+
+# ALIASES
+for file in $(find "$DOTFILES" -name "aliases.bash"); do
+    source "$file"
+done
+
+export DOTFILES=$HOME/.dotfiles

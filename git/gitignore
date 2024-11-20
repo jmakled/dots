@@ -1,0 +1,46 @@
+# git config --global core.excludesfile ~/.dotfiles/apps/git/gitignore
+
+# Operating System files
+.DS_Store
+.Trash
+Thumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+.venv/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.class
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.iml
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*cache*/
+
+# Backup files
+*~

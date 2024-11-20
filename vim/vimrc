@@ -1,0 +1,142 @@
+" ------
+" Bindings
+" Spacing
+" Colors
+" Buffers
+" Splits
+" netrw Explorer
+" Python
+" Plugins
+" ------
+
+" Bindings
+" Remap Leader Key, add jk as alt. Esc
+let mapleader = " " 
+imap jk <Esc>
+
+" Saving & Quitting
+map <leader>x :x<CR>
+map <leader>w :w<CR>
+map <leader>q :q<CR>
+map <leader>Q :qa<CR>
+
+" Spacing
+set so=999          " scroll offset - 999 for "typewriter"-like
+set number          " line numbers
+set relativenumber  " /relative/ line numbers
+set ts=4            " how many spaces == a tab
+set softtabstop=4   " 
+set shiftwidth=4    " 
+set autoindent      " auto-indent on save
+set expandtab       " tabs into spaces
+set linebreak       " Soft wrap
+" Highlight unnecessary whitespace
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Colors
+syntax on           " Enable syntax highlighting
+set cursorline      " Highlight cusor line
+set showmatch       " Highlight search matches
+let python_highlight_all = 1
+
+" Buffers
+set hidden          " Switch buffers w/o asking to save
+set autochdir       " Auto-change to buffer's directory
+nnoremap <S-h> :bprev<CR>
+nnoremap <S-l> :bnext<CR>
+nnoremap <leader>bd :bdelete<CR>
+
+" Splits
+set splitbelow
+set splitright
+" move cursor w/ Ctrl+J/K/L/H
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" quick splits
+nnoremap <leader>v :vsplit<CR>
+nnoremap <leader>h :hsplit<CR>
+
+" netrw - file explorer settings 
+let g:netrw_keepdir = 0                         " sync cwd and browsing dir
+let g:netrw_winsize = 30                        " shrink window
+let g:netrw_banner = 0                          " banner shown w/ `I` in netrw
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'  " hide dotfiles on load
+let g:netrw_localcopydircmd = 'cp -r'           " change copy command to work w/ dirs
+nnoremap <leader>e :Lexplore<CR>                " Open netrw sidebar w/ leader-e
+
+" Omni-completion
+" functions sourced from :h ins-completion
+
+if has("autocmd") && exists("+omnifunc")        " load filetype omni-completion
+autocmd Filetype *
+        \	if &omnifunc == "" |
+        \		setlocal omnifunc=syntaxcomplete#Complete |
+        \	endif
+endif
+
+function! CleverTab()                           " tab triggers completion; sourced from :h ins-completion
+   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+      return "\<Tab>"
+   else
+      return "\<C-N>"
+   endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
+
+"
+" Python
+"
+set encoding=utf-8
+
+" PEP 8 formatting help
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+" highlight unnecessary whitespace
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+"
+" Plugins
+"
+
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+call plug#begin()
+
+"
+" Plugin Config
+"
+
+" vim-tmux-navigator
+" cleanly binds CTRL+hjkl to tmux splits
+" NOTE: Requires similar plugin / config in tmux.conf
+" docs: https://github.com/christoomey/vim-tmux-navigator#vim-tmux-navigator
+Plug 'christoomey/vim-tmux-navigator'
+
+" FZF
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+set rtp+=~/.fzf
+set rtp+=~/.vim/bundle/fzf
+nnoremap <C-p> :Buffers<CR>
+nnoremap <C-f> :Lines<CR>
+nnoremap <leader>ff :Files<CR>
+
+call plug#end()

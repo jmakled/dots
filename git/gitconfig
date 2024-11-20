@@ -1,0 +1,9 @@
+[user]
+    name=jmakled
+    email=unifier-pod-ditto@duck.com
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true

@@ -5,7 +5,9 @@ Trying to keep my configuration as minimal & "vanilla" as possible, but adding s
 Structure is rudimentary, and there's probably a better way to do it, but as an example:
 
 `apps/` - Most CLI programs
+
 `gui/` - Any GUI-driven program
+
 `shell/` - Bash/Zsh/Fish
 
 ```

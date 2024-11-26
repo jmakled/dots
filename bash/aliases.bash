@@ -29,7 +29,7 @@ alias ll="ls -lAFG"
 
 ## Shamelessly stolen from https://github.com/mathiasbynens/dotfiles/blob/main/.functions
 function tre() {
-    tree -aC -L 3 -I '.git|__pycache__|.vscode|node_modules|.venv' --dirsfirst "$@" | less -FRX
+    tree -aC -L 3 -I '.git|data|__pycache__|.vscode|node_modules|.venv' --dirsfirst "$@" | less -FRX
 }
 
 # NETWORK

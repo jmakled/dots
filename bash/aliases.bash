@@ -9,7 +9,7 @@ alias n="nvim"
 alias v="vim"
 
 ## Notes
-export NOTE_DIR="$HOME/Notes"
+export NOTE_DIR="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/notebook"
 alias notes="$EDITOR '$NOTE_DIR/index.md'"
 daily() {
     local file=$NOTE_DIR/journal/daily_pages/$(date +%Y)/$(date +%Y-%m-%d).md
